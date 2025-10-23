@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show confirmation message
             const confirmationMessage = document.createElement('div');
             confirmationMessage.className = 'confirmation-message';
-            confirmationMessage.textContent = 'Thank you for your message! Your email client should open now.';
+            confirmationMessage.textContent = 'Message simulated as sent! If you would like to message me, your email client should open now.';
             confirmationMessage.style.color = 'green';
             confirmationMessage.style.marginTop = '10px';
             
