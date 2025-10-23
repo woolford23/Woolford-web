@@ -1,231 +1,246 @@
+/* Font Awesome or similar icon font import would go in the head */
+/* Base styles for all devices */
+body {
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto;
+}
 
-    <style>
-        /* Font Awesome or similar icon font import would go in the head */
-        /* Base styles for all devices */
-        body {
-            line-height: 1.6;
-            max-width: 100%;
-            margin: 0 auto;
-        }
+/* Media queries for responsive design */
+/* Small screens (mobile phones) */
+@media (max-width: 786px) {
+    body {
+        padding: 10px;
+    }
 
-        /* Media queries for responsive design */
-        /* Small screens (mobile phones) */
-        @media (max-width: 786px) {
-            body {
-                padding: 10px;
-            }
-            
-            nav ul {
-                text-align: center;
-            }
-            
-            nav ul li {
-                display: block;
-                margin: 8px 0;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            #skills ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
+    nav ul {
+        text-align: center;
+    }
 
-        /* Medium screens (tablets) */
-        @media (min-width: 577px) and (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .project {
-                padding: 12px;
-            }
-        }
+    nav ul li {
+        display: block;
+        margin: 8px 0;
+    }
 
-        /* Large screens (desktops) */
-        @media (min-width: 769px) and (max-width: 992px) {
-            body {
-                padding: 20px;
-            }
-            
-            #projects .project {
-                flex: 0 0 calc(50% - 20px);
-            }
-        }
+    h1 {
+        font-size: 1.8rem;
+    }
 
-        /* Extra large screens */
-        @media (min-width: 993px) {
-            body {
-                padding: 30px;
-            }
-        }
-        #skills ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    #skills ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
 
-        #skills li {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
+/* Medium screens (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
 
-        #skills li:hover {
-            transform: translateY(-3px);
-        }
+    h1 {
+        font-size: 2rem;
+    }
 
-        /* Icon placeholders - you'll need to add actual icons */
-        #skills li::before {
-            content: "";
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+    .project {
+        padding: 12px;
+    }
+}
 
-        /* Custom icon for each skill */
-        #skills li:nth-child(1)::before {
-            background-image: url('images/icons/html-icon.svg');
-        }
+/* Large screens (desktops) */
+@media (min-width: 769px) and (max-width: 992px) {
+    body {
+        padding: 20px;
+    }
 
-        #skills li:nth-child(2)::before {
-            background-image: url('images/icons/responsive-icon.svg');
-        }
+    #projects .project {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
 
-        #skills li:nth-child(3)::before {
-            background-image: url('images/icons/design-icon.svg');
-        }
+/* Extra large screens */
+@media (min-width: 993px) {
+    body {
+        padding: 30px;
+    }
+}
 
-        #skills li:nth-child(4)::before {
-            background-image: url('images/icons/git-icon.svg');
-        }
+#skills ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
-        #skills li:nth-child(5)::before {
-            background-image: url('images/icons/performance-icon.svg');
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 15px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        .project {
-            background: #fff;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .project:hover {
-            transform: translateY(-5px);
-        }
-        #projects {
-            margin: 30px 0;
-        }
-        #projects .project-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        #projects .project {
-            flex: 0 0 calc(33.333% - 20px);
-            min-width: 250px;
-        }
-        @media (max-width: 768px) {
-            #projects .project {
-            flex: 0 0 100%;
-            }
-        }
-        figure {
-            margin: 0;
-        }
-        /* Contact form styles */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+#skills li {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
 
-        form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+#skills li:hover {
+    transform: translateY(-3px);
+}
 
-        form input, 
-        form textarea, 
-        form select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-        }
+/* Icon placeholders - you'll need to add actual icons */
+#skills li::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
-        form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
+/* Custom icon for each skill */
+#skills li:nth-child(1)::before {
+    background-image: url('images/icons/html-icon.svg');
+}
 
-        form button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
+#skills li:nth-child(2)::before {
+    background-image: url('images/icons/responsive-icon.svg');
+}
 
-        form button:hover {
-            background-color: #555;
-        }
+#skills li:nth-child(3)::before {
+    background-image: url('images/icons/design-icon.svg');
+}
 
-        figcaption {
-            font-size: 0.9em;
-            color: #666;
-        }
+#skills li:nth-child(4)::before {
+    background-image: url('images/icons/git-icon.svg');
+}
+
+#skills li:nth-child(5)::before {
+    background-image: url('images/icons/performance-icon.svg');
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+    color: #333;
+}
+
+.project {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+#projects {
+    margin: 30px 0;
+}
+
+#projects .project-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+#projects .project {
+    flex: 0 0 calc(33.333% - 20px);
+    min-width: 250px;
+}
+
+@media (max-width: 768px) {
+    #projects .project {
+        flex: 0 0 100%;
+    }
+}
+
+figure {
+    margin: 0;
+}
+
+/* Contact form styles */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+figcaption {
+    font-size: 0.9em;
+    color: #666;
+}
