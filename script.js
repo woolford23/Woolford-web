@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-// Contact form validation and submission
+// Contact form validation
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('#contact-form');
     
@@ -130,21 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Submit the form if valid
             if (isValid) {
-                // Create a mailto link
-                const mailtoLink = `mailto:wooleyford@gmail.com?subject=Contact from ${encodeURIComponent(name.value)}&body=${encodeURIComponent(`From: ${name.value}\nEmail: ${email.value}\n\n${message.value}`)}`;
-                
-                // Open the email client
-                window.location.href = mailtoLink;
-                
-                // Show confirmation message
-                const confirmationMessage = document.createElement('div');
-                confirmationMessage.className = 'confirmation-message';
-                confirmationMessage.textContent = 'Message simulated as sent! If you would like to message me, your email client should open now.';
-                confirmationMessage.style.color = 'green';
-                confirmationMessage.style.marginTop = '10px';
-                
-                contactForm.appendChild(confirmationMessage);
-                contactForm.reset();
+                contactForm.submit();
             }
         });
     }
@@ -154,7 +140,40 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayError(inputElement, message) {
     const errorElement = document.createElement('div');
     errorElement.className = 'error-message';
-         // Open the email client
+    errorElement.textContent = message;
+    errorElement.style.color = 'red';
+    errorElement.style.fontSize = '0.8rem';
+    errorElement.style.marginTop = '5px';
+    
+    inputElement.parentNode.appendChild(errorElement);
+    inputElement.style.borderColor = 'red';
+}
+
+// Helper function to validate email format
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+// Handle form submission and email sending
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('#contact-form');
+    
+    if (contactForm) {
+        const originalSubmitHandler = contactForm.onsubmit;
+        
+        contactForm.onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Create a mailto link
+            const mailtoLink = `mailto:wooleyford@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`)}`;
+            
+            // Open the email client
             window.location.href = mailtoLink;
             
             // Show confirmation message
@@ -167,4 +186,5 @@ function displayError(inputElement, message) {
             contactForm.appendChild(confirmationMessage);
             contactForm.reset();
         };
-
+    }
+});
