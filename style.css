@@ -126,7 +126,14 @@ body {
     padding: 20px;
     background-color: #f4f4f4;
 }
-
+/* Desktop header indentation */
+@media (min-width: 769px) {
+    header h1,
+    header nav {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
 header {
     background: #333;
     color: #fff;
