@@ -1,190 +1,253 @@
-// Toggle navigation menu visibility
-function toggleMenu() {
-    const navMenu = document.querySelector('.nav-links');
-    const hamburger = document.querySelector('.hamburger');
-    
-    if (navMenu && hamburger) {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
+/* Font Awesome or similar icon font import would go in the head */
+/* Base styles for all devices */
+body {
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Media queries for responsive design */
+/* Small screens (mobile phones) */
+@media (max-width: 786px) {
+    body {
+        padding: 10px;
+    }
+
+    nav ul {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 8px 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #skills ul {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
-// Add click event listener to hamburger icon
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.addEventListener('click', toggleMenu);
+/* Medium screens (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        padding: 15px;
     }
 
-    // Implement smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Close the mobile menu if it's open
-            const navMenu = document.querySelector('.nav-links.active');
-            if (navMenu) {
-                toggleMenu();
-            }
-            
-            // Get the target section
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-});
-
-// Filter projects based on category
-function filterProjects(category) {
-    const projects = document.querySelectorAll('.project-card');
-    
-    if (projects.length === 0) return;
-    
-    // Show all projects if category is 'all'
-    if (category === 'all') {
-        projects.forEach(project => {
-            project.style.display = 'block';
-        });
-        return;
+    h1 {
+        font-size: 2rem;
     }
-    
-    // Otherwise, filter projects based on category
-    projects.forEach(project => {
-        if (project.dataset.category === category) {
-            project.style.display = 'block';
-        } else {
-            project.style.display = 'none';
-        }
-    });
+
+    .project {
+        padding: 12px;
+    }
 }
 
-// Add click event listeners to filter buttons
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    
-    if (filterButtons.length) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Filter projects
-                const category = this.dataset.category;
-                filterProjects(category);
-            });
-        });
+/* Large screens (desktops) */
+@media (min-width: 769px) and (max-width: 992px) {
+    body {
+        padding: 20px;
     }
-});
-// Contact form validation
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('#contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form fields
-            const name = document.querySelector('#name');
-            const email = document.querySelector('#email');
-            const message = document.querySelector('#message');
-            
-            // Reset error states
-            const errorElements = document.querySelectorAll('.error-message');
-            errorElements.forEach(el => el.remove());
-            
-            // Validate fields
-            let isValid = true;
-            
-            // Name validation
-            if (!name.value.trim()) {
-                displayError(name, 'Name is required');
-                isValid = false;
-            }
-            
-            // Email validation
-            if (!email.value.trim()) {
-                displayError(email, 'Email is required');
-                isValid = false;
-            } else if (!isValidEmail(email.value)) {
-                displayError(email, 'Please enter a valid email address');
-                isValid = false;
-            }
-            
-            // Message validation
-            if (!message.value.trim()) {
-                displayError(message, 'Message is required');
-                isValid = false;
-            }
-            
-            // Submit the form if valid
-            if (isValid) {
-                contactForm.submit();
-            }
-        });
-    }
-});
 
-// Helper function to display error messages
-function displayError(inputElement, message) {
-    const errorElement = document.createElement('div');
-    errorElement.className = 'error-message';
-    errorElement.textContent = message;
-    errorElement.style.color = 'red';
-    errorElement.style.fontSize = '0.8rem';
-    errorElement.style.marginTop = '5px';
-    
-    inputElement.parentNode.appendChild(errorElement);
-    inputElement.style.borderColor = 'red';
+    #projects .project {
+        flex: 0 0 calc(50% - 20px);
+    }
 }
 
-// Helper function to validate email format
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-// Handle form submission and email sending
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('#contact-form');
-    
-    if (contactForm) {
-        const originalSubmitHandler = contactForm.onsubmit;
-        
-        contactForm.onsubmit = function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Create a mailto link
-            const mailtoLink = `mailto:wooleyford@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`)}`;
-            
-            // Open the email client
-            window.location.href = mailtoLink;
-            
-            // Show confirmation message
-            const confirmationMessage = document.createElement('div');
-            confirmationMessage.className = 'confirmation-message';
-            confirmationMessage.textContent = 'Message simulated as sent! If you would like to message me, your email client should open now.';
-            confirmationMessage.style.color = 'green';
-            confirmationMessage.style.marginTop = '10px';
-            
-            contactForm.appendChild(confirmationMessage);
-            contactForm.reset();
-        };
+/* Extra large screens */
+@media (min-width: 993px) {
+    body {
+        padding: 30px;
     }
-});
+}
+
+#skills ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#skills li {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+#skills li:hover {
+    transform: translateY(-3px);
+}
+
+/* Icon placeholders - you'll need to add actual icons */
+#skills li::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Custom icon for each skill */
+#skills li:nth-child(1)::before {
+    background-image: url('images/icons/html-icon.svg');
+}
+
+#skills li:nth-child(2)::before {
+    background-image: url('images/icons/responsive-icon.svg');
+}
+
+#skills li:nth-child(3)::before {
+    background-image: url('images/icons/design-icon.svg');
+}
+
+#skills li:nth-child(4)::before {
+    background-image: url('images/icons/git-icon.svg');
+}
+
+#skills li:nth-child(5)::before {
+    background-image: url('images/icons/performance-icon.svg');
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+/* Desktop header indentation */
+@media (min-width: 769px) {
+    header h1,
+    header nav {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+    color: #333;
+}
+
+.project {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+#projects {
+    margin: 30px 0;
+}
+
+#projects .project-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+#projects .project {
+    flex: 0 0 calc(33.333% - 20px);
+    min-width: 250px;
+}
+
+@media (max-width: 768px) {
+    #projects .project {
+        flex: 0 0 100%;
+    }
+}
+
+figure {
+    margin: 0;
+}
+
+/* Contact form styles */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+figcaption {
+    font-size: 0.9em;
+    color: #666;
+}
